@@ -1,9 +1,7 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         int[] prices = {9, 1, 4, 7, 5, 2, 3, 8};
-        // testSorting("Selection", prices);
+        testSorting("Selection", prices);
         testSorting("insertion", prices);
     }
 
@@ -59,6 +57,8 @@ public class Main {
 
     public static void insertionSort(int[] arr) {
 //{9, 1, 4, 7, 5, 2, 3, 8};
+        //first scan from arr index 1 and keep arr index 1 as temp variable. Now compare this temp variable with index 0 element if index 0 element is
+        //greater than index 1 then shift the element right
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
             int j = i - 1;
