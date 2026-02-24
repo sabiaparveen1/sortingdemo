@@ -3,6 +3,7 @@ public class Main {
         int[] prices = {9, 1, 4, 7, 5, 2, 3, 8};
         testSorting("Selection", prices);
         testSorting("insertion", prices);
+        testSorting("bubble", prices);
     }
 
     public static void testSorting(String type, int[] original) {
@@ -17,6 +18,9 @@ public class Main {
                 break;
             case "insertion":
                 insertionSort(arr);
+                break;
+            case "bubble":
+                bubbleSort(arr);
                 break;
         }
         long end = System.nanoTime();
@@ -33,7 +37,7 @@ public class Main {
     }
 
     public static void selectionSort(int[] arr) {
-//{999, 199, 499, 1499, 50, 700, 1200, 300}
+
         for (int i = 0; i < arr.length - 1; i++) {
 
             //on first scan pass we consider first element as min and then compare with other elements
@@ -67,6 +71,29 @@ public class Main {
                 j--;
             }
             arr[j + 1] = temp;
+        }
+    }
+
+    public static void bubbleSort(int[] arr) {
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int flag = 0;
+            //took arr.length-1-i in order to avoid unnecessary comparisons for elements that are already sorted.
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+
+                if (arr[j] > arr[j + 1]) {
+                   int temp = arr[j];
+                    arr[j ] = arr[j+1];
+                    arr[j+1] = temp;
+                    flag = 1;
+
+                }
+
+            }
+            // took flag in order to avoid unnecessary swapping in case of array is sorted.
+            if (flag == 0)
+                break;
+
         }
 
 
