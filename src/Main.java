@@ -4,6 +4,7 @@ public class Main {
         testSorting("Selection", prices);
         testSorting("insertion", prices);
         testSorting("bubble", prices);
+        testSorting("quick", prices);
     }
 
     public static void testSorting(String type, int[] original) {
@@ -22,6 +23,8 @@ public class Main {
             case "bubble":
                 bubbleSort(arr);
                 break;
+            case "quick":
+                quickSort(arr);
         }
         long end = System.nanoTime();
         printArray(arr);
@@ -82,9 +85,9 @@ public class Main {
             for (int j = 0; j < arr.length - 1 - i; j++) {
 
                 if (arr[j] > arr[j + 1]) {
-                   int temp = arr[j];
-                    arr[j ] = arr[j+1];
-                    arr[j+1] = temp;
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                     flag = 1;
 
                 }
@@ -95,7 +98,45 @@ public class Main {
                 break;
 
         }
+    }
 
+    public static void quickSort(int[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
 
+    public static void quickSort(int[] arr, int start, int end) {
+
+        // this condition is whether elements are there or not for comparison coz sorting can only be done if there are more than two elements
+        if (start < end) {
+
+            int pivotIndex = partition(arr, start, end);
+
+            quickSort(arr, start, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, end);
+        }
+    }
+    //check if pivot element is greater than array element starting at zero then element is replaced with first element from scan
+    public static int partition(int[] arr, int start, int end) {
+
+        int pivot = arr[end];
+        int i = start - 1;
+
+        for (int j = start; j < end; j++) {
+
+            if (arr[j] < pivot) {
+                i++;
+
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[end];
+        arr[end] = temp;
+
+        //returning pivot element index no
+        return i + 1;
     }
 }
